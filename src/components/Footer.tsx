@@ -22,7 +22,7 @@ export default function Footer() {
             </Link>
           ))}
         </nav>
-        <p className="text-xs text-white/40">© {new Date().getFullYear()} King Manu Studio</p>
+        <p className="text-xs text-white/40">© King Manu Studio</p>
       </Container>
     </footer>
   );

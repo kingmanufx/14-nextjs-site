@@ -1,30 +1,10 @@
+import Link from "next/link";
 import Button from "@/components/Button";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
+import { getServices } from "@/lib/services";
 
-const services = [
-  {
-    number: "01",
-    title: "Brand strategy",
-    intro: "Find the thread that makes you unmistakably you.",
-    detail: "We help you understand your audience, sharpen your story, and find a clear position you can build on.",
-    deliverables: ["Research & discovery", "Positioning & messaging", "Brand architecture"],
-  },
-  {
-    number: "02",
-    title: "Identity & design",
-    intro: "A distinctive look with something to say.",
-    detail: "From a new visual identity to the everyday details, we create design systems that look good and work hard.",
-    deliverables: ["Visual identity", "Art direction", "Design systems"],
-  },
-  {
-    number: "03",
-    title: "Digital experiences",
-    intro: "Thoughtful digital, made for real people.",
-    detail: "We design and build websites that bring your brand to life, make the complex feel simple, and give people a reason to stay.",
-    deliverables: ["Web design & development", "Digital products", "Content & campaigns"],
-  },
-];
+const services = getServices();
 
 export const metadata = { title: "Services" };
 
@@ -46,20 +26,22 @@ export default function ServicesPage() {
 
         <section className="py-20 sm:py-28">
           <Container>
-            <SectionHeading eyebrow="What we bring" title="Three ways to make a difference." description="Every project is different. We bring the right people and the right tools to make yours matter." />
-            <div className="mt-14">
+            <SectionHeading eyebrow="What we bring" title="Six ways to make a difference." description="Every project is different. We bring the right people and the right tools to make yours matter." />
+            <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service) => (
-                <article key={service.number} className="grid gap-6 border-t border-[#17261f]/15 py-9 md:grid-cols-[0.12fr_0.9fr_1fr_0.85fr] md:gap-8 md:py-12">
-                  <span className="text-xs text-[#82945e]">{service.number}</span>
-                  <div>
-                    <h2 className="text-2xl font-medium tracking-[-0.04em]">{service.title}</h2>
-                    <p className="mt-3 text-sm font-medium leading-6">{service.intro}</p>
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="group flex min-h-64 flex-col rounded-2xl border border-[#17261f]/10 bg-white p-6 transition-transform hover:-translate-y-1 hover:border-[#82945e]/50 sm:p-7"
+                >
+                  <div className="flex items-start justify-between">
+                    <span aria-hidden="true" className="text-2xl text-[#82945e]">{service.icon}</span>
+                    <span aria-hidden="true" className="text-[#82945e] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
                   </div>
-                  <p className="text-sm leading-7 text-[#647169]">{service.detail}</p>
-                  <ul className="space-y-2 text-sm text-[#647169]">
-                    {service.deliverables.map((item) => <li key={item}><span className="mr-2 text-[#82945e]">↗</span>{item}</li>)}
-                  </ul>
-                </article>
+                  <h2 className="mt-10 text-xl font-medium tracking-[-0.04em]">{service.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-[#647169]">{service.summary}</p>
+                  <p className="mt-auto pt-6 text-xs text-[#647169]">Projects from <span className="font-semibold text-[#17261f]">${service.priceFrom.toLocaleString()}</span></p>
+                </Link>
               ))}
             </div>
           </Container>
