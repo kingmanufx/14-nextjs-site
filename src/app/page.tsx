@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Button from "@/components/Button";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
@@ -43,10 +44,16 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto hidden h-[480px] w-full max-w-[470px] lg:block">
-              <div className="absolute right-0 top-2 h-[430px] w-[82%] overflow-hidden rounded-[48%_48%_12px_12px] bg-[linear-gradient(145deg,#c1c78f_0%,#718c71_45%,#344b40_100%)]">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(247,237,196,0.9),transparent_28%),linear-gradient(155deg,transparent_48%,rgba(19,38,31,0.7))]" />
-                <div className="absolute bottom-8 left-8 text-sm leading-6 text-white/80">A little different<br />by design.</div>
-              </div>
+              <Image
+                src="/studio-landscape.png"
+                alt="Abstract green landscape beneath a warm setting sun"
+                width={920}
+                height={1000}
+                sizes="(min-width: 1024px) 386px, 0px"
+                preload
+                className="absolute right-0 top-2 h-[430px] w-[82%] rounded-[48%_48%_12px_12px] object-cover"
+              />
+              <div className="absolute bottom-8 left-[22%] text-sm leading-6 text-white/80">A little different<br />by design.</div>
               <div className="absolute bottom-0 left-0 flex size-36 flex-col justify-between rounded-full bg-[#d5f66f] p-5 text-[#17261f]">
                 <span className="text-2xl">✳</span>
                 <span className="text-xs font-semibold uppercase leading-4 tracking-wider">Good things<br />grow here</span>

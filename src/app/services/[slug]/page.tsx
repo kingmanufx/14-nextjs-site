@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Button from "@/components/Button";
 import Container from "@/components/Container";
+import { openGraphImage } from "@/lib/site";
 import { getService, getServices } from "@/lib/services";
 
 type ServicePageProps = {
@@ -33,6 +34,7 @@ export async function generateMetadata({
       title: service.title,
       description: service.summary,
       type: "website",
+      images: [openGraphImage],
     },
   };
 }
